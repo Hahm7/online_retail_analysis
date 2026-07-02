@@ -1,0 +1,155 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.rfm-wrap{font-family:'Inter',sans-serif;padding:1.5rem 2rem;color:#18160F}
+.rfm-title{font-size:17px;font-weight:500;color:#2d2b2b;margin:0 0 4px;line-height:1.4}
+.rfm-sub{font-size:12px;color:#6A6158;margin:0 0 20px}
+.rfm-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.rfm-clabel{font-size:12px;color:#6A6158;margin:0 0 10px}
+.rfm-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.rfm-legend span{font-size:11px;color:#6A6158;display:flex;align-items:center;gap:4px}
+.rfm-legend i{width:9px;height:9px;border-radius:2px;display:inline-block;flex-shrink:0}
+.rfm-source{font-size:11px;color:#ABA49B;margin:16px 0 0}
+</style>
+
+<div class="rfm-wrap">
+  <p class="rfm-title"><span style="color:#534AB7;">Champions</span> make up 22% of customers but generate 66% of total revenue</p>
+  <p class="rfm-sub">Customer share and revenue by segment &#x2014; UCI Online Retail II dataset</p>
+
+  <div class="rfm-grid">
+    <div>
+      <p class="rfm-clabel">Share of customers by segment</p>
+      <div style="position:relative;width:100%;height:260px;">
+        <canvas id="custChart"></canvas>
+      </div>
+      <div class="rfm-legend">
+        <span><i style="background:#534AB7;"></i>Champions</span>
+        <span><i style="background:#0F6E56;"></i>Loyal</span>
+        <span><i style="background:#D85A30;"></i>At Risk</span>
+        <span><i style="background:#BA7517;"></i>Lost</span>
+        <span><i style="background:#185FA5;"></i>Potential</span>
+        <span><i style="background:#FFC20A ;"></i>New Customers</span>
+      </div>
+    </div>
+
+    <div>
+      <p class="rfm-clabel">Total revenue by segment (&#163;)</p>
+      <div style="position:relative;width:100%;height:260px;">
+        <canvas id="revChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <p class="rfm-source">Source: UCI Machine Learning Repository &#x2014; Online Retail II dataset</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const rawSegments = ['Champions','Loyal','At Risk','Lost','Potential','New Customers'];
+const pieColors   = ['#534AB7','#0F6E56','#D85A30','#BA7517','#185FA5','#FFC20A '];
+const customers   = [1294,1151,580,1601,847,307];
+const revenue     = [8338496,2139297,1117606,581199,368447,128093];
+const total       = customers.reduce((a,b)=>a+b,0);
+
+const sorted = rawSegments
+  .map((s,i) => ({s, rev: revenue[i], color: i===0 ? '#534AB7' : '#C8C5BB'}))
+  .sort((a,b) => b.rev - a.rev);
+const barSegments = sorted.map(d=>d.s);
+const barRevenue  = sorted.map(d=>d.rev);
+const barColors   = sorted.map(d=>d.color);
+
+const tickColor  = '#888780';
+const fontFamily = "'Inter', sans-serif";
+
+const pieDatalabelsPlugin = {
+  id:'pieDatalabels',
+  afterDatasetsDraw(chart){
+    const {ctx,data}=chart;
+    const meta=chart.getDatasetMeta(0);
+    meta.data.forEach((arc,i)=>{
+      const pct=data.datasets[0].data[i]/total*100;
+      if(pct<6)return;
+      const angle=(arc.startAngle+arc.endAngle)/2;
+      const r=(arc.innerRadius+arc.outerRadius)/2;
+      const x=arc.x+Math.cos(angle)*r;
+      const y=arc.y+Math.sin(angle)*r;
+      ctx.save();
+      ctx.font=`500 11px ${fontFamily}`;
+      ctx.fillStyle='#ffffff';
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      ctx.fillText(pct.toFixed(1)+'%',x,y);
+      ctx.restore();
+    });
+  }
+};
+
+const barDatalabelPlugin = {
+  id:'barDatalabel',
+  afterDatasetsDraw(chart){
+    const {ctx}=chart;
+    const meta=chart.getDatasetMeta(0);
+    meta.data.forEach((bar,i)=>{
+      const v = barRevenue[i];
+      const label = v >= 1000000 ? '\u00A3'+(v/1000000).toFixed(1)+'M' : '\u00A3'+Math.round(v/1000)+'K';
+      ctx.save();
+      ctx.font=`500 11px ${fontFamily}`;
+      ctx.fillStyle = i===0 ? '#534AB7' : '#6A6158';
+      ctx.textAlign='center';
+      ctx.textBaseline='bottom';
+      ctx.fillText(label, bar.x, bar.y-4);
+      ctx.restore();
+    });
+  }
+};
+
+new Chart(document.getElementById('custChart'),{
+  type:'pie',
+  data:{
+    labels:rawSegments,
+    datasets:[{data:customers,backgroundColor:pieColors,borderWidth:2,borderColor:'#ffffff'}]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>{
+        const pct=(ctx.parsed/total*100).toFixed(1);
+        return ` ${ctx.label}: ${pct}% (${ctx.parsed.toLocaleString()} customers)`;
+      }}}
+    }
+  },
+  plugins:[pieDatalabelsPlugin]
+});
+
+new Chart(document.getElementById('revChart'),{
+  type:'bar',
+  data:{
+    labels:barSegments,
+    datasets:[{data:barRevenue,backgroundColor:barColors,borderRadius:3,borderSkipped:false}]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    layout:{padding:{top:24}},
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>{
+        const v=ctx.parsed.y;
+        return ` \u00A3${(v/1000000).toFixed(2)}M`;
+      }}}
+    },
+    scales:{
+      x:{
+        grid:{display:false},
+        ticks:{font:{size:11,family:fontFamily},color:tickColor,maxRotation:30,autoSkip:false}
+      },
+      y:{
+        display:false
+      }
+    }
+  },
+  plugins:[barDatalabelPlugin]
+});
+</script>
