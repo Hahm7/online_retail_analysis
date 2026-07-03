@@ -11,7 +11,7 @@ body{margin:0;padding:0}
 .rfm-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .rfm-clabel{font-size:15px;color:#6A6158;margin:0 0 10px}
 .rfm-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.rfm-legend span{font-size:14px;color:#6A6158;display:flex;align-items:center;gap:4px}
+.rfm-legend span{font-size:16px;color:#6A6158;display:flex;align-items:center;gap:4px}
 .rfm-legend i{width:9px;height:9px;border-radius:2px;display:inline-block;flex-shrink:0}
 .rfm-source{font-size:13px;color:#ABA49B;margin:16px 0 0}
 </style>
@@ -20,9 +20,10 @@ body{margin:0;padding:0}
 <div class="rfm-wrap">
   <p class="rfm-title">
     <span style="color:#534AB7;">Champions</span> make up 22% of customers
-    but generate 65% of total revenue
+    but generate 66% of total revenue
   </p>
-  <p class="rfm-sub">Customer share and revenue by segment &mdash; UCI Online Retail II dataset</p>
+
+  <br>
 
   <div class="rfm-grid">
     <div>
@@ -63,8 +64,8 @@ body{margin:0;padding:0}
 </script>
 <script>
 const segments   = ['Champions', 'Loyal', 'At Risk', 'Lost', 'Potential', 'New Customers'];
-const customers  = [1267, 1088, 653, 1385, 879, 508];
-const revenue    = [8296156.89, 2094929.22, 1181391.66, 471354.48, 379064.12, 250244.49];
+const customers  = [1296, 1135, 593, 1567, 865, 324];
+const revenue    = [8346575.3, 2118277.43, 1128065.56, 565342.83, 376644.15, 138235.59];
 const segColours = ['#534AB7', '#0F6E56', '#D85A30', '#888780', '#185FA5', '#BA7517'];
 const barColours = ['#534AB7', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB'];
 const total      = customers.reduce((a,b) => a+b, 0);
@@ -171,7 +172,7 @@ new Chart(document.getElementById('revChart'), {
         grid: { display: false },
         border: { display: false },
         ticks: {
-        font: { size: 14, family: fontFamily },
+        font: { size: 16, family: fontFamily },
         color: (ctx) => ctx.index === 0 ? '#534AB7' : '#888780',
         maxRotation: 30,
         autoSkip: false
