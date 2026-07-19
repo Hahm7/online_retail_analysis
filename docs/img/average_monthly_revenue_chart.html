@@ -12,37 +12,37 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: #ffffff;
     color: #1a1a1a;
-    padding: 48px 56px 56px;
-    max-width: 860px;
+    padding: 64px 72px 72px;
+    max-width: 1280px;
     margin: 0 auto;
   }
   .title {
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 600;
     line-height: 1.35;
     color: #111111;
-    margin-bottom: 8px;
-    max-width: 680px;
+    margin-bottom: 12px;
+    max-width: 980px;
   }
   .subtitle {
-    font-size: 13px;
+    font-size: 18px;
     color: #6b6b6b;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
   }
   .chart-wrap {
     position: relative;
     width: 100%;
-    height: 360px;
+    height: 560px;
   }
   .axis-label {
-    font-size: 12px;
+    font-size: 16px;
     color: #8a8a8a;
-    margin-top: 14px;
+    margin-top: 18px;
   }
   .source {
-    font-size: 11px;
+    font-size: 15px;
     color: #aaaaaa;
-    margin-top: 28px;
+    margin-top: 34px;
   }
 </style>
 </head>
@@ -52,15 +52,14 @@
 <p class="subtitle">Average monthly revenue (£)</p>
 
 <div class="chart-wrap">
-  <canvas id="chart" role="img" aria-label="Bar chart of average monthly revenue. November peaks at £2.14M, all other months shown in grey.">November £2.14M, October £1.68M, December £1.53M, September £1.43M, March £1.09M, May £1.08M, June £1.05M, August £1.03M, July £994K, April £922K, January £871K, February £808K.</canvas>
+  <canvas id="chart" role="img" aria-label="Bar chart of average monthly revenue. November peaks at £2.88M, all other months shown in grey."></canvas>
 </div>
-
 
 <p class="source">Source: UCI Machine Learning Repository — Online Retail II dataset</p>
 
 <script>
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const revs   = [871020,807964,1089732,922318,1075083,1052566,994545,1027424,1427058,1680315,2143202,1534701];
+const revs   = [1282894.96,1045793.23,1451590.37,1161943.72,1383621.97,1435066.31,1321332.09,1398501.05,1897622.54,2197894.55,2881867.82,2188446.23];
 const NOV    = 10;
 
 const labelPlugin = {
@@ -71,9 +70,9 @@ const labelPlugin = {
     const novY = y.getPixelForValue(revs[NOV]);
     ctx.save();
     ctx.fillStyle = '#2471C8';
-    ctx.font = '600 13px Inter, system-ui, sans-serif';
+    ctx.font = '600 18px Inter, system-ui, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('£2.1M', novX, novY - 10);
+    ctx.fillText('£2.88M', novX, novY - 14);
     ctx.restore();
   }
 };
@@ -108,7 +107,7 @@ new Chart(document.getElementById('chart'), {
           autoSkip: false,
           color: (ctx) => ctx.index === NOV ? '#2471C8' : '#6b6b6b',
           font: {
-            size: 12,
+            size: 16,
             family: 'Inter, system-ui, sans-serif',
             weight: (ctx) => ctx.index === NOV ? '600' : '400'
           }
@@ -118,12 +117,12 @@ new Chart(document.getElementById('chart'), {
       },
       y: {
         min: 0,
-        max: 2600000,
+        max: 3000000,
         ticks: {
+          stepSize: 500000,
           color: '#8a8a8a',
-          font: { size: 11, family: 'Inter, system-ui, sans-serif' },
-          callback: v => v === 0 ? '£0' : '£' + (v / 1e6).toFixed(1) + 'M',
-          maxTicksLimit: 6
+          font: { size: 15, family: 'Inter, system-ui, sans-serif' },
+          callback: v => v === 0 ? '£0' : '£' + (v / 1e6).toFixed(1) + 'M'
         },
         grid: { color: 'rgba(0,0,0,0.05)' },
         border: { display: false }
