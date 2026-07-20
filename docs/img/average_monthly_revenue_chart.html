@@ -52,14 +52,14 @@
 <p class="subtitle">Average monthly revenue (£)</p>
 
 <div class="chart-wrap">
-  <canvas id="chart" role="img" aria-label="Bar chart of average monthly revenue. November peaks at £2.88M, all other months shown in grey."></canvas>
+  <canvas id="chart" role="img" aria-label="Bar chart of average monthly revenue. November peaks at £2.82M, all other months shown in grey."></canvas>
 </div>
 
 <p class="source">Source: UCI Machine Learning Repository — Online Retail II dataset</p>
 
 <script>
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const revs   = [1282894.96,1045793.23,1451590.37,1161943.72,1383621.97,1435066.31,1321332.09,1398501.05,1897622.54,2197894.55,2881867.82,2188446.23];
+const revs   = [1183834.72,1024882.27,1431482.22,1118602.40,1337480.85,1395015.61,1292792.10,1363176.88,1852955.48,2130807.95,2821777.40,1977248.93];
 const NOV    = 10;
 
 const labelPlugin = {
@@ -72,7 +72,7 @@ const labelPlugin = {
     ctx.fillStyle = '#2471C8';
     ctx.font = '600 18px Inter, system-ui, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('£2.88M', novX, novY - 14);
+    ctx.fillText('£2.82M', novX, novY - 14);
     ctx.restore();
   }
 };
