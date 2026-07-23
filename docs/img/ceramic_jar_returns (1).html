@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medium Ceramic Storage Jar Returns</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #ffffff;
+    font-family: ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    padding: 36px 44px 44px;
+    max-width: 980px;
+  }
+  h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #1a1a19;
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  h3 span {
+    color: #d94a3d;
+    font-weight: 600;
+  }
+  .subtitle {
+    font-size: 15px;
+    color: #6b6a65;
+    margin-bottom: 24px;
+    line-height: 1.8;
+  }
+  .chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 460px;
+  }
+</style>
+</head>
+<body>
+  <h3>Only the <span>medium ceramic storage jar</span> is returned in bulk and repeatedly</h3>
+  <div class="subtitle">
+    <div>Position = units returned</div>
+    <div>Bubble size = orders placed</div>
+  </div>
+  <div class="chart-wrap">
+    <canvas id="chart"></canvas>
+  </div>
+<script>
+var ACCENT = '#d94a3d';
+var GREY   = '#b0aea6';
+var MUTED  = '#898781';
+var INK    = '#3a3936';
+var GRID   = '#e8e6df';
+
+var rows = [
+  {n:'Paper craft, little birdie',    r:80995, o:1},
+  {n:'Medium ceramic storage jar',    r:74494, o:247, hero:true},
+  {n:'Rotating silver angels',        r:9381,  o:756},
+  {n:'Fruit salad paper cups',        r:7140,  o:136},
+  {n:'Fruit salad paper plates',      r:7008,  o:143},
+  {n:'Pop art pen case & pens',       r:5184,  o:31},
+  {n:'Black silver flower t-light',   r:5040,  o:23},
+  {n:'Multicolour spring flower mug', r:4996,  o:204},
+  {n:'Teatime pen case & pens',       r:4632,  o:59},
+  {n:'White bird garden mug',         r:4320,  o:35}
+];
+
+var pts = rows.map(function(d, i) {
+  return {
+    x: d.r,
+    y: rows.length - 1 - i,
+    r: Math.max(5, Math.sqrt(d.o) / 1.45),
+    o: d.o,
+    n: d.n,
+    hero: !!d.hero
+  };
+});
+
+var orderLabels = {
+  id: 'orderLabels',
+  afterDatasetsDraw: function(chart) {
+    var ctx  = chart.ctx;
+    var meta = chart.getDatasetMeta(0);
+    ctx.save();
+    ctx.textBaseline = 'middle';
+    ctx.textAlign    = 'left';
+    meta.data.forEach(function(point, i) {
+      var d = pts[i];
+      ctx.font      = (d.hero ? '600' : '400') + " 13px ui-sans-serif,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif";
+      ctx.fillStyle = d.hero ? ACCENT : MUTED;
+      var label = d.o.toLocaleString() + (d.o === 1 ? ' order' : ' orders');
+      ctx.fillText(label, point.x + d.r + 8, point.y);
+    });
+    ctx.restore();
+  }
+};
+
+new Chart(document.getElementById('chart'), {
+  type: 'bubble',
+  data: {
+    datasets: [{
+      data: pts,
+      backgroundColor: pts.map(function(p) { return p.hero ? ACCENT : GREY; }),
+      borderColor:     pts.map(function(p) { return p.hero ? '#b83028' : '#8a8880'; }),
+      borderWidth: 1
+    }]
+  },
+  plugins: [orderLabels],
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: { padding: { right: 100, top: 12, bottom: 4, left: 4 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: function(c) {
+            return c.raw.n + ': ' + c.raw.x.toLocaleString() + ' returned, ' + c.raw.o + ' orders';
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        min: -2000,
+        max: 95000,
+        grid: { color: GRID, drawTicks: false },
+        border: { display: false },
+        title: {
+          display: true,
+          text: 'Units returned',
+          color: INK,
+          font: { size: 14 }
+        },
+        ticks: {
+          color: MUTED,
+          font: { size: 13 },
+          callback: function(v) { return v < 0 ? '' : (v / 1000) + 'k'; }
+        }
+      },
+      y: {
+        min: -0.6,
+        max: 9.6,
+        grid: { display: false },
+        border: { display: false },
+        ticks: {
+          color: function(ctx) {
+            var label = ctx.tick && ctx.tick.label;
+            return label === 'Medium ceramic storage jar' ? ACCENT : INK;
+          },
+          font: function(ctx) {
+            var label = ctx.tick && ctx.tick.label;
+            return {
+              size: 13,
+              weight: label === 'Medium ceramic storage jar' ? '600' : '400'
+            };
+          },
+          stepSize: 1,
+          callback: function(v) {
+            var row = rows[rows.length - 1 - v];
+            return row ? row.n : '';
+          }
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
