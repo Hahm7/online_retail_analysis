@@ -10,35 +10,49 @@
   body {
     background: #ffffff;
     font-family: ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-    padding: 32px 40px 40px;
-    max-width: 960px;
+    padding: 36px 44px 44px;
+    max-width: 980px;
   }
   h3 {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 500;
     color: #1a1a19;
-    margin-bottom: 6px;
-    line-height: 1.3;
+    margin-bottom: 10px;
+    line-height: 1.35;
   }
-  p {
-    font-size: 13px;
+  h3 span {
+    color: #d94a3d;
+    font-weight: 600;
+  }
+  .subtitle {
+    font-size: 15px;
     color: #6b6a65;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    line-height: 1.8;
   }
   .chart-wrap {
     position: relative;
     width: 100%;
-    height: 440px;
+    height: 460px;
   }
 </style>
 </head>
 <body>
-  <h3>Only the medium ceramic storage jar is returned in bulk <em>and</em> repeatedly</h3>
-  <p>Position = units returned &middot; Bubble size = orders placed</p>
+  <h3>Only the <span>medium ceramic storage jar</span> is returned in bulk and repeatedly</h3>
+  <div class="subtitle">
+    <div>Position = units returned</div>
+    <div>Bubble size = orders placed</div>
+  </div>
   <div class="chart-wrap">
     <canvas id="chart"></canvas>
   </div>
 <script>
+var ACCENT = '#d94a3d';
+var GREY   = '#b0aea6';
+var MUTED  = '#898781';
+var INK    = '#3a3936';
+var GRID   = '#e8e6df';
+
 var rows = [
   {n:'Paper craft, little birdie',    r:80995, o:1},
   {n:'Medium ceramic storage jar',    r:74494, o:247, hero:true},
@@ -63,12 +77,6 @@ var pts = rows.map(function(d, i) {
   };
 });
 
-var ACCENT = '#d94a3d';
-var GREY   = '#b0aea6';
-var MUTED  = '#898781';
-var INK    = '#3a3936';
-var GRID   = '#e8e6df';
-
 var orderLabels = {
   id: 'orderLabels',
   afterDatasetsDraw: function(chart) {
@@ -79,7 +87,7 @@ var orderLabels = {
     ctx.textAlign    = 'left';
     meta.data.forEach(function(point, i) {
       var d = pts[i];
-      ctx.font      = (d.hero ? '600' : '400') + " 12px ui-sans-serif,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif";
+      ctx.font      = (d.hero ? '600' : '400') + " 13px ui-sans-serif,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif";
       ctx.fillStyle = d.hero ? ACCENT : MUTED;
       var label = d.o.toLocaleString() + (d.o === 1 ? ' order' : ' orders');
       ctx.fillText(label, point.x + d.r + 8, point.y);
@@ -102,7 +110,7 @@ new Chart(document.getElementById('chart'), {
   options: {
     responsive: true,
     maintainAspectRatio: false,
-    layout: { padding: { right: 90, top: 12, bottom: 4, left: 4 } },
+    layout: { padding: { right: 100, top: 12, bottom: 4, left: 4 } },
     plugins: {
       legend: { display: false },
       tooltip: {
@@ -117,20 +125,17 @@ new Chart(document.getElementById('chart'), {
       x: {
         min: -2000,
         max: 95000,
-        grid: {
-          color: GRID,
-          drawTicks: false
-        },
+        grid: { color: GRID, drawTicks: false },
         border: { display: false },
         title: {
           display: true,
           text: 'Units returned',
           color: INK,
-          font: { size: 13 }
+          font: { size: 14 }
         },
         ticks: {
           color: MUTED,
-          font: { size: 11 },
+          font: { size: 13 },
           callback: function(v) { return v < 0 ? '' : (v / 1000) + 'k'; }
         }
       },
@@ -140,8 +145,17 @@ new Chart(document.getElementById('chart'), {
         grid: { display: false },
         border: { display: false },
         ticks: {
-          color: INK,
-          font: { size: 12 },
+          color: function(ctx) {
+            var label = ctx.tick && ctx.tick.label;
+            return label === 'Medium ceramic storage jar' ? ACCENT : INK;
+          },
+          font: function(ctx) {
+            var label = ctx.tick && ctx.tick.label;
+            return {
+              size: 13,
+              weight: label === 'Medium ceramic storage jar' ? '600' : '400'
+            };
+          },
           stepSize: 1,
           callback: function(v) {
             var row = rows[rows.length - 1 - v];

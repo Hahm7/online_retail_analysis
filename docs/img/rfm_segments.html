@@ -19,8 +19,8 @@ body{margin:0;padding:0}
 <body>
 <div class="rfm-wrap">
   <p class="rfm-title">
-    <span style="color:#534AB7;">Champions</span> make up 23% of customers
-    but generate 69% of total revenue
+    <span style="color:#534AB7;">Champions</span> make up 22% of customers
+    but generate 68% of total revenue
   </p>
 
   <br>
@@ -63,12 +63,12 @@ body{margin:0;padding:0}
 //# sourceMappingURL=chart.umd.js.map
 </script>
 <script>
-const segments   = ['Champions', 'Loyal', 'At Risk', 'Lost', 'Promising', 'Needs Attention', 'New Customers'];
-const customers  = [1322, 1155, 585, 1628, 403, 448, 311];
-const revenue    = [11703191.7, 2672978.15, 1474885.99, 689888.89, 218204.74, 182844.82, 127545.48];
+const segments = ['Champions', 'Loyal', 'At Risk', 'Lost', 'Promising', 'Needs Attention', 'New Customers'];
+const customers = [1310, 1154, 598, 1599, 423, 448, 320];
+const revenue = [11676101.03, 2671543.36, 1489983.39, 671045.31, 229964.23, 182247.59, 148654.86];
 const segColours = ['#534AB7', '#0F6E56', '#D85A30', '#888780', '#E69F00', '#CC79A7', '#BA7517'];
 const barColours = ['#534AB7', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB'];
-const total      = customers.reduce((a,b) => a+b, 0);
+const total = customers.reduce((a,b) => a+b, 0);
 const fontFamily = "'Inter', sans-serif";
 
 const pieLabelPlugin = {
@@ -80,13 +80,13 @@ const pieLabelPlugin = {
       const pct = data.datasets[0].data[i] / total * 100;
       if (pct < 6) return;
       const angle = (arc.startAngle + arc.endAngle) / 2;
-      const r     = (arc.innerRadius + arc.outerRadius) / 2;
-      const x     = arc.x + Math.cos(angle) * r;
-      const y     = arc.y + Math.sin(angle) * r;
+      const r = (arc.innerRadius + arc.outerRadius) / 2;
+      const x = arc.x + Math.cos(angle) * r;
+      const y = arc.y + Math.sin(angle) * r;
       ctx.save();
-      ctx.font         = '500 13px ' + fontFamily;
-      ctx.fillStyle    = '#ffffff';
-      ctx.textAlign    = 'center';
+      ctx.font = '500 13px ' + fontFamily;
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(Math.round(pct) + '%', x, y);
       ctx.restore();
@@ -105,9 +105,9 @@ const barLabelPlugin = {
         ? '£' + (val/1000000).toFixed(1) + 'M'
         : '£' + (val/1000).toFixed(0) + 'K';
       ctx.save();
-      ctx.font         = '500 16px ' + fontFamily;
-      ctx.fillStyle    = i === 0 ? '#534AB7' : '#888780';
-      ctx.textAlign    = 'center';
+      ctx.font = '500 16px ' + fontFamily;
+      ctx.fillStyle = i === 0 ? '#534AB7' : '#888780';
+      ctx.textAlign = 'center';
       ctx.textBaseline = 'bottom';
       ctx.fillText(label, bar.x, bar.y - 4);
       ctx.restore();

@@ -52,14 +52,14 @@
 <p class="subtitle">Average monthly revenue (£)</p>
 
 <div class="chart-wrap">
-  <canvas id="chart" role="img" aria-label="Bar chart of average monthly revenue. November peaks at £2.82M, all other months shown in grey."></canvas>
+  <canvas id="chart" role="img" aria-label="Bar chart of average monthly revenue. November peaks at £1.44M, all other months shown in grey."></canvas>
 </div>
 
 <p class="source">Source: UCI Machine Learning Repository — Online Retail II dataset</p>
 
 <script>
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const revs   = [1183834.72,1024882.27,1431482.22,1118602.40,1337480.85,1395015.61,1292792.10,1363176.88,1852955.48,2130807.95,2821777.40,1977248.93];
+const revs   = [641447.50,522896.60,725795.20,580971.90,691811.00,717533.20,660666.00,699250.50,948811.30,1098947.30,1440933.90,786973.50];
 const NOV    = 10;
 
 const labelPlugin = {
@@ -72,7 +72,7 @@ const labelPlugin = {
     ctx.fillStyle = '#2471C8';
     ctx.font = '600 18px Inter, system-ui, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('£2.82M', novX, novY - 14);
+    ctx.fillText('£1.44M', novX, novY - 14);
     ctx.restore();
   }
 };
@@ -117,7 +117,7 @@ new Chart(document.getElementById('chart'), {
       },
       y: {
         min: 0,
-        max: 3000000,
+        max: 2000000,
         ticks: {
           stepSize: 500000,
           color: '#8a8a8a',
