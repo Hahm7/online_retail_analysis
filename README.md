@@ -1,6 +1,6 @@
 # E-commerce Revenue Analysis
 
-**Analyze £14.6M in transactions to identify revenue drivers, seasonal patterns, and high-value customer segments for a UK online retailer.**
+**Analyze £19.6M in transactions from 5,852 customers to identify revenue drivers for a UK online retailer.**
 
 ---
 
