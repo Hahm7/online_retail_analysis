@@ -19,8 +19,8 @@ body{margin:0;padding:0}
 <body>
 <div class="rfm-wrap">
   <p class="rfm-title">
-    <span style="color:#534AB7;">Champions</span> make up 23% of customers
-    but generate 68% of total revenue
+    <span style="color:#534AB7;">Champions</span> make up 22% of customers
+    but generate 68% of total customer revenue
   </p>
 
   <br>
@@ -32,7 +32,7 @@ body{margin:0;padding:0}
         <canvas id="custChart"></canvas>
       </div>
       <div class="rfm-legend">
-        <span><i style="background:#534AB7;"></i>Champions</span><span><i style="background:#0F6E56;"></i>Loyal</span><span><i style="background:#D85A30;"></i>At Risk</span><span><i style="background:#888780;"></i>Lost</span><span><i style="background:#E69F00;"></i>Promising</span><span><i style="background:#CC79A7;"></i>Needs Attention</span><span><i style="background:#BA7517;"></i>New Customers</span>
+        <span><i style="background:#534AB7;"></i>Champions</span><span><i style="background:#0F6E56;"></i>Loyal</span><span><i style="background:#D85A30;"></i>At Risk</span><span><i style="background:#888780;"></i>Lost</span><span><i style="background:#BA7517;"></i>New Customers</span><span><i style="background:#CC79A7;"></i>Needs Attention</span><span><i style="background:#E69F00;"></i>Promising</span>
       </div>
     </div>
 
@@ -63,10 +63,10 @@ body{margin:0;padding:0}
 //# sourceMappingURL=chart.umd.js.map
 </script>
 <script>
-const segments = ['Champions', 'Loyal', 'At Risk', 'Lost', 'Promising', 'Needs Attention', 'New Customers'];
-const customers = [1317, 1161, 585, 1621, 407, 447, 314];
-const revenue = [11689629.68, 2690947.86, 1473310.09, 686564.21, 218276.58, 183665.51, 127145.84];
-const segColours = ['#534AB7', '#0F6E56', '#D85A30', '#888780', '#E69F00', '#CC79A7', '#BA7517'];
+const segments = ['Champions', 'Loyal', 'At Risk', 'Lost', 'New Customers', 'Needs Attention', 'Promising'];
+const customers = [1275, 1180, 607, 1574, 461, 448, 307];
+const revenue = [11601105.62, 2568022.63, 1500952.65, 651734.36, 413763.76, 183773.7, 150187.05];
+const segColours = ['#534AB7', '#0F6E56', '#D85A30', '#888780', '#BA7517', '#CC79A7', '#E69F00'];
 const barColours = ['#534AB7', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB'];
 const total = customers.reduce((a,b) => a+b, 0);
 const fontFamily = "'Inter', sans-serif";
