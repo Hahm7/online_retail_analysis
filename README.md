@@ -30,7 +30,7 @@ The questions that matter to the commercial team:
 2. **Exploratory data analysis** in SQL covering revenue decomposition, RFM segmentation, cohort analysis on first order value, and seasonality by market, month, day and hour.
 3. **Visualisations** built in Power BI and Claude AI.
 
-Written entirely in SQL, run through DuckDB so queries and output sit together in the notebook.
+SQL queries was run through DuckDB so they could output in JupyterLab.
 
 
 ## Skills Used
