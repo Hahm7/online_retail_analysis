@@ -12,7 +12,9 @@ A UK online retailer wants to know how the business has performed over the past 
 
 ## Business Problem
 
-The online retailer sells giftware and has 2 years of transaction history. Revenue is up 2.5% year on year but orders fell 4% and the business increasingly ran on returning customers as new intake declined. Average order value rising by 6.8% confirms that revenue was held by selling more to the customers the business already has.
+Revenue is up 2.5% year on year but orders fell 4% and the business increasingly ran on returning customers as new intake declined. Average order value rising by 6.8% confirms that revenue was held by selling more to the customers the business already has.
+
+![As new customer intake fell away, returning customers climbed to take its place](/docs/img/new_vs_returning_customers.png)
 
 The questions that matter to the commercial team:
 
@@ -24,12 +26,9 @@ The questions that matter to the commercial team:
 
 ## Methodology
 
-- **Cleaned** 1,021,271 transactions in SQL — deduplication, cancellation handling, non-product stock code removal
-- **EDA** on revenue, decomposed year on year movement into orders, average order value and active customers
-- **RFM segmentation** to size and rank the customer base
-- **Cohort analysis** on first order value against repeat purchase
-- **Geographic and seasonality analysis** by market, month, day and hour
-- **Visualised** in Power BI and Claude AI
+1. **SQL queries** that clean and standardise 1,067,371 raw transactions into an analysis ready table, removing duplicates, invalid prices and non-product stock codes.
+2. **Exploratory data analysis** in SQL covering revenue decomposition, RFM segmentation, cohort analysis on first order value, and seasonality by market, month, day and hour.
+3. **Visualisations** built in Power BI and Claude AI.
 
 Written entirely in SQL, run through DuckDB so queries and output sit together in the notebook.
 
