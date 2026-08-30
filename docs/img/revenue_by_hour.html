@@ -1,16 +1,16 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
-.wrap{font-family:'Inter',sans-serif;padding:1.95rem 2.6rem;background:#fff;color:#18160F}
-.title{font-size:22px;font-weight:500;color:#18160F;margin:0 0 5px;line-height:1.4}
-.sub{font-size:16px;color:#6A6158;margin:0 0 26px}
-.source{font-size:14px;color:#ABA49B;margin:21px 0 0;text-align:right}
+.wrap{font-family:'Inter',sans-serif;padding:2.4rem 3rem;background:#fff;color:#18160F;max-width:1280px;margin:0 auto}
+.title{font-size:30px;font-weight:500;color:#18160F;margin:0 0 8px;line-height:1.35;letter-spacing:-0.01em}
+.sub{font-size:19px;color:#6A6158;margin:0 0 32px}
+.source{font-size:15px;color:#ABA49B;margin:26px 0 0;text-align:right}
 </style>
 
 <div class="wrap">
   <p class="title">Revenue peaks at <span style="color:#534AB7;">12pm</span> and falls to near zero by 8pm</p>
   <p class="sub">Total revenue by hour of day (&pound;) &mdash; UCI Online Retail II dataset</p>
-  <div style="position:relative;width:100%;height:416px;">
+  <div style="position:relative;width:100%;height:540px;">
     <canvas id="hourChart"></canvas>
   </div>
   <p class="source">Source: UCI Machine Learning Repository &mdash; Online Retail II dataset</p>
@@ -22,10 +22,10 @@ const hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4
 const revenue = [4.25,75029.57,521995.20,1704623.23,2508752.73,2423379.77,2785147.51,2479959.54,2217166.40,2228673.31,1457666.26,814966.46,263096.94,125469.61,38887.89];
 const maxIdx = revenue.indexOf(Math.max(...revenue));
 const fontFamily = "'Inter', sans-serif";
-const tickColor = '#888780';
-const gridColor = 'rgba(136,135,128,0.12)';
+const tickColor = '#4A453E';
+const gridColor = 'rgba(136,135,128,0.20)';
 
-const pointRadius = revenue.map((_,i) => i === maxIdx ? 6.5 : 0);
+const pointRadius = revenue.map((_,i) => i === maxIdx ? 9 : 0);
 const pointHoverRadius = revenue.map((_,i) => 5.2);
 const pointColors = revenue.map((_,i) => i === maxIdx ? '#534AB7' : 'transparent');
 
@@ -38,16 +38,17 @@ const datalabelPlugin = {
       if (i !== maxIdx) return;
       const label = '\u00A3' + (revenue[i]/1000000).toFixed(1) + 'M';
       ctx.save();
-      ctx.font = `500 16px ${fontFamily}`;
+      ctx.font = `600 22px ${fontFamily}`;
       ctx.fillStyle = '#534AB7';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'bottom';
-      ctx.fillText(label, point.x, point.y - 10);
+      ctx.fillText(label, point.x, point.y - 16);
       ctx.restore();
     });
   }
 };
 
+Chart.defaults.devicePixelRatio = Math.max(window.devicePixelRatio || 1, 2);
 new Chart(document.getElementById('hourChart'), {
   type: 'line',
   data: {
@@ -55,7 +56,7 @@ new Chart(document.getElementById('hourChart'), {
     datasets: [{
       data: revenue,
       borderColor: '#534AB7',
-      borderWidth: 3.25,
+      borderWidth: 4,
       backgroundColor: 'rgba(83,74,183,0.08)',
       fill: true,
       tension: 0.4,
@@ -80,14 +81,15 @@ new Chart(document.getElementById('hourChart'), {
     scales: {
       x: {
         grid: { display: false },
-        ticks: { font: { size: 14, family: fontFamily }, color: tickColor }
+        ticks: { font: { size: 18, family: fontFamily }, color: tickColor, padding: 8 }
       },
       y: {
         grid: { color: gridColor },
         border: { display: false },
         ticks: {
-          font: { size: 14, family: fontFamily },
+          font: { size: 17, family: fontFamily },
           color: tickColor,
+          padding: 8,
           callback: v => v >= 1000000 ? '\u00A3' + (v/1000000).toFixed(1) + 'M' : v >= 1000 ? '\u00A3' + (v/1000).toFixed(0) + 'K' : '\u00A3' + v
         }
       }
