@@ -25,18 +25,18 @@ The questions that matter to the commercial team:
 
 ## Methodology
 
-1. **SQL queries** that clean and standardise 1,067,371 raw transactions into an analysis ready table, removing duplicates, invalid prices and non-product stock codes.
+1. **SQL queries** that clean and standardise 1,067,371 raw transactions into an analysis ready table.Duplicates, invalid prices and non-product stock codes removed.
 2. **Exploratory data analysis** in SQL covering revenue decomposition, RFM segmentation, cohort analysis on first order value, and seasonality by market, month, day and hour.
 3. **Visualisations** built in Power BI and Claude AI.
 
-SQL queries was run through DuckDB so they could output in JupyterLab.
+SQL queries was run through DuckDB so they could be output in JupyterLab.
 
 
 ## Skills Used
 
-**SQL:** CTEs, window functions (`NTILE`, `ROW_NUMBER`, `LAG`, `FIRST_VALUE`, partitioned `SUM`), `CASE` segmentation, `ROLLUP`, `QUANTILE_CONT`, date and interval functions, joins, aggregates
+**SQL:** GROUP BY, CTEs, window functions (`NTILE`, `ROW_NUMBER`, `LAG`, `FIRST_VALUE`, partitioned `SUM`), `CASE` segmentation, `ROLLUP`, `QUANTILE_CONT`, views, date and interval functions, joins, aggregates
 
-**Python / JupyterLab:** DuckDB, pandas, dynamic query construction
+**Python / JupyterLab:** DuckDB, pandas
 
 **Power BI:** DAX measures, data visualisation
 
@@ -63,9 +63,18 @@ Across the two years the retailer took **£19.64m gross**, **£18.93m net of ret
 
 ![Champions make up 22% of customers but generate 68% of total customer revenue](/docs/img/rfm_segments.png)
 
+| | |
+|---|---|
+| Champions | 1,277 |
+| Revenue | £11,614,909 |
+| Average spend | £9,095 |
+| Median spend | £3,921 |
+| Top 5 share of segment revenue | 16.6% |
+| Top 25 share of segment revenue | 34.0% |
+
 **Champion customers** is the segment that buys often and spends the most, they make up **22% of customers** but generate **68% of customer revenue.** This segment is also skewed internally as half of them spend under **£3,921** while the average is **£9,095** and the **top 25 accounts hold 34% of the segment's revenue**.
 
-**Recommendation:** give the top 25 accounts a named contact in sales who checks in regularly, so problems surface before an account is lost.
+**Recommendation:** Give the top 25 accounts a named contact in sales who checks in regularly, so problems surface before an account is lost.
 
 
 Geography tells the same story. The **UK is 86% of revenue (£16.8m)**, and most of the international markets are dominated by a single customer:
