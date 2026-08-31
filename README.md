@@ -1,4 +1,4 @@
-# Online Retail Analysis
+# Customer Segmentation and Revenue Analysis
 
 ---
 
@@ -12,7 +12,17 @@ A UK online retailer wants to know how the business has performed over the past 
 
 ## Business Problem
 
-Revenue is up 2.5% year on year but orders fell 4% and the business increasingly ran on returning customers as new intake declined. Average order value rising by 6.8% confirms that revenue was held by selling more to the customers the business already has.
+### The headline
+| | Year 1 (Dec 09 to Nov 10) | Year 2 (Dec 10 to Nov 11) | Change | Two years |
+|---|---|---|---|---|
+| Revenue | £9,397,599 | £9,632,728 | +2.5% | £19,030,328 |
+| Orders | 19,756 | 18,957 | −4.0% | 38,713 |
+| Average order value | £475.68 | £508.14 | +6.8% | £491.57 |
+| Active customers | 4,239 | 4,293 | +1.3% | |
+
+Across the two complete trading years, revenue grew by 2.5% but orders fell by 4%. With new customer intake
+declining over the same period and the average order value rising by 6.8%, this suggests the
+growth came from selling more to the people already there.
 
 ![As new customer intake fell away, returning customers climbed to take its place](/docs/img/new_vs_returning_customers.png)
 
@@ -29,7 +39,7 @@ The questions that matter to the commercial team:
 2. **Exploratory data analysis** in SQL covering revenue decomposition, RFM segmentation, cohort analysis on first order value, and seasonality by market, month, day and hour.
 3. **Visualisations** built in Power BI and Claude AI.
 
-SQL queries was run through DuckDB so they could be output in JupyterLab.
+SQL queries were run through DuckDB to output in JupyterLab.
 
 
 ## Skills Used
@@ -45,19 +55,10 @@ SQL queries was run through DuckDB so they could be output in JupyterLab.
 
 ## Results & Recommendations
 
-### The headline
+To look at where revenue comes from, I scored and segmented every customer, ranked the
+markets, split new customers by first order value and broke revenue down by month, day and
+hour.
 
-Across the two years the retailer took **£19.64m gross**, **£18.93m net of returns**, from **39,529 orders** and **5,852 identified customers**, at an average order value of **£496.97**.
-
-| | Year 1 (Dec 09 – Nov 10) | Year 2 (Dec 10 – Nov 11) | Change |
-|---|---|---|---|
-| Revenue | £9,397,599 | £9,632,728 | **+2.5%** |
-| Orders | 19,756 | 18,957 | **−4.0%** |
-| Average order value | £475.68 | £508.14 | **+6.8%** |
-| Active customers | 4,239 | 4,293 | +1.3% |
-
-
----
 
 ### Who the customers are
 
@@ -65,14 +66,14 @@ Across the two years the retailer took **£19.64m gross**, **£18.93m net of ret
 
 | | |
 |---|---|
-| Champions | 1,277 |
-| Revenue | £11,614,909 |
-| Average spend | £9,095 |
-| Median spend | £3,921 |
-| Top 5 share of segment revenue | 16.6% |
-| Top 25 share of segment revenue | 34.0% |
+| Champions | 1,310 |
+| Revenue | £11,669,509 |
+| Average spend | £8,908 |
+| Median spend | £3,829 |
+| Top 5 share of segment revenue | 16.5% |
+| Top 25 share of segment revenue | 33.8% |
 
-**Champion customers** is the segment that buys often and spends the most, they make up **22% of customers** but generate **68% of customer revenue.** This segment is also skewed internally as half of them spend under **£3,921** while the average is **£9,095** and the **top 25 accounts hold 34% of the segment's revenue**.
+**Champion customers** is the segment that buys often and spends the most, they make up **22% of customers** but generate **68% of customer revenue.** This segment is also skewed internally as half of them spend under **£3,829** while the average is **£8,908** and the **top 25 accounts hold about 34% of the segment's revenue**.
 
 **Recommendation:** Give the top 25 accounts a named contact in sales who checks in regularly, so problems surface before an account is lost.
 
