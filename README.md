@@ -119,3 +119,28 @@ This is a weekday business as Monday to Friday carries around 90% of revenue and
 Within the day, revenue peaks at midday and around 90% is taken between 9am and 5pm.
 
 **Recommendation:** Commit stock and launch campaigns by early September and hold the annual planning review in July. Schedule campaigns and emails for weekday mornings and staff customer service to the 9 to 5 window rather than evenly across the week.
+
+
+## Next Steps
+
+1. Investigate the reasons behind the fall in new customers
+2. Bring in cost data to check whether the biggest accounts are the most profitable
+3. Group products into categories to see where returns concentrate
+
+**Limitations:** 22% of transactions have no customer ID, so guest buyers sit outside every customer level finding here and the true repeat rate is likely understated. Product analysis is at item level with no category data. The customer segments come from thresholds I chose rather than learned from the data. With no marketing spend or cost data, the figures above are based on revenue and stated assumptions rather than measured returns. December is excluded from year comparisons because December 2011 has only 8 trading days.
+
+
+## Repository Structure
+
+```
+online_retail_analysis/
+├── README.md
+├── notebooks/          # Audit, cleaning and analysis notebooks
+├── docs/img/           # Charts used in this README
+├── chart.umd.js        # Chart.js, loaded locally for notebook rendering
+├── requirements.txt
+└── .gitignore          # data/ excluded — see source below
+```
+
+**Data source:** [UCI Machine Learning Repository — Online Retail II](https://archive.ics.uci.edu/dataset/502/online+retail+ii). Transactions from 1 December 2009 to 9 December 2011.
+
