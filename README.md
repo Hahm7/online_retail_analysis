@@ -119,7 +119,7 @@ The rate rises at every step, but the sharpest jump is from the bottom quartile 
 
 ![Revenue peaks at 12pm and falls to near zero by 8pm](/docs/img/revenue_by_hour.png)
 
-This is a weekday business as Monday to Friday carries around 90% of revenue and Saturday takes just £9,803 across the entire two years. Within the day, revenue peaks at midday and around 90% is taken between 9am and 5pm.
+Over 90% of revenue falls on Monday to Friday and over 90% between 9am and 5pm, with midday being the busiest hour of the day.
 
 **Recommendation:** Commit stock and launch campaigns by early September and hold the annual planning review in July. Schedule campaigns and emails for weekday mornings and staff customer service to the 9 to 5 window rather than evenly across the week.
 
