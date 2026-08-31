@@ -13,6 +13,7 @@ A UK online retailer wants to know how the business has performed over the past 
 ## Business Problem
 
 ### The headline
+
 | | Year 1 (Dec 09 to Nov 10) | Year 2 (Dec 10 to Nov 11) | Change | Two years |
 |---|---|---|---|---|
 | Revenue | £9,397,599 | £9,632,728 | +2.5% | £19,030,328 |
@@ -20,16 +21,18 @@ A UK online retailer wants to know how the business has performed over the past 
 | Average order value | £475.68 | £508.14 | +6.8% | £491.57 |
 | Active customers | 4,239 | 4,293 | +1.3% | |
 
-Across the two complete trading years, revenue grew by 2.5% but orders fell by 4%. With new customer intake
-declining over the same period and the average order value rising by 6.8%, this suggests the
-growth came from selling more to the people already there.
+*Both years run December to November so the eight trading days of December 2011 don't
+distort the comparison. Customers who ordered in both years appear in both columns, so the two years cannot be added together.*
+
+Across the two complete trading years, revenue grew by 2.5% while orders fell by 4%. New customer intake declined over the same period, so the growth came from selling more to the customers already there.
+
 
 ![As new customer intake fell away, returning customers climbed to take its place](/docs/img/new_vs_returning_customers.png)
 
 The questions that matter to the commercial team:
 
 - **Who the customers are?**
-- **Which of the new customers are worth keeping?** 
+- **Which new customers go on to buy again?** 
 - **When are purchases typically made?** 
 
 
@@ -97,7 +100,7 @@ Geography tells the same story. The **UK is 86% of revenue (£16.8m)**, and most
 
 ---
 
-### Which of the new customers are worth keeping
+### Which new customers go on to buy again?
 
 ![Low first order spenders are least likely to buy again](/docs/img/first_order_value_vs_buy_again.png)
 
@@ -107,19 +110,16 @@ The rate rises at every step, but the sharpest jump is from the bottom quartile 
 
 ---
 
-### When do customers buy
+### When are purchases typically made?
 
 ![November generates the highest average revenue](/docs/img/average_monthly_revenue_chart.png)
 
-November averages **£1.44m**, roughly double a typical month. September and October are already the next highest at £949k and £1.10m, so demand climbs for three months before it peaks.
-
 ![Saturday generates less than 1% of weekly revenue](/docs/img/revenue_by_day.png)
 
-This is a weekday business as Monday to Friday carries around 90% of revenue and Saturday takes just £9,803 across the entire two years.
 
 ![Revenue peaks at 12pm and falls to near zero by 8pm](/docs/img/revenue_by_hour.png)
 
-Within the day, revenue peaks at midday and around 90% is taken between 9am and 5pm.
+This is a weekday business as Monday to Friday carries around 90% of revenue and Saturday takes just £9,803 across the entire two years. Within the day, revenue peaks at midday and around 90% is taken between 9am and 5pm.
 
 **Recommendation:** Commit stock and launch campaigns by early September and hold the annual planning review in July. Schedule campaigns and emails for weekday mornings and staff customer service to the 9 to 5 window rather than evenly across the week.
 
