@@ -59,6 +59,7 @@ To look at where revenue comes from, I scored and segmented every customer, rank
 markets, split new customers by first order value and broke revenue down by month, day and
 hour.
 
+---
 
 ### Who the customers are
 
@@ -104,6 +105,7 @@ The rate rises at every step, but the sharpest jump is from the bottom quartile 
 
 **Recommendation:** Email low spend customers within 2 weeks of first purchase to help encourage a second purchase.
 
+---
 
 ### When do customers buy
 
