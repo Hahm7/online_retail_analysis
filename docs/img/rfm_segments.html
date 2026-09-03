@@ -32,7 +32,7 @@ body{margin:0;padding:0}
         <canvas id="custChart"></canvas>
       </div>
       <div class="rfm-legend">
-        <span><i style="background:#534AB7;"></i>Champions</span><span><i style="background:#0F6E56;"></i>Loyal</span><span><i style="background:#D85A30;"></i>At Risk</span><span><i style="background:#888780;"></i>Lost</span><span><i style="background:#E69F00;"></i>Promising</span><span><i style="background:#CC79A7;"></i>Needs Attention</span><span><i style="background:#BA7517;"></i>New Customers</span>
+        <span><i style="background:#534AB7;"></i>Champions</span><span><i style="background:#0F6E56;"></i>Loyal</span><span><i style="background:#D85A30;"></i>At Risk</span><span><i style="background:#888780;"></i>Lost</span><span><i style="background:#BA7517;"></i>New Customers</span><span><i style="background:#CC79A7;"></i>Needs Attention</span><span><i style="background:#E69F00;"></i>Promising</span>
       </div>
     </div>
 
@@ -63,10 +63,10 @@ body{margin:0;padding:0}
 //# sourceMappingURL=chart.umd.js.map
 </script>
 <script>
-const segments = ['Champions', 'Loyal', 'At Risk', 'Lost', 'Promising', 'Needs Attention', 'New Customers'];
-const customers = [1310, 1154, 596, 1601, 423, 450, 318];
-const revenue = [11669509.24, 2679349.73, 1485827.26, 673293.32, 229815.09, 182920.97, 148824.16];
-const segColours = ['#534AB7', '#0F6E56', '#D85A30', '#888780', '#E69F00', '#CC79A7', '#BA7517'];
+const segments = ['Champions', 'Loyal', 'At Risk', 'Lost', 'New Customers', 'Needs Attention', 'Promising'];
+const customers = [1295, 1183, 595, 1602, 396, 437, 344];
+const revenue = [11633766.29, 2577150.42, 1486112.13, 671897.6, 347896.13, 178392.07, 174325.13];
+const segColours = ['#534AB7', '#0F6E56', '#D85A30', '#888780', '#BA7517', '#CC79A7', '#E69F00'];
 const barColours = ['#534AB7', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB', '#C8C5BB'];
 const total = customers.reduce((a,b) => a+b, 0);
 const fontFamily = "'Inter', sans-serif";
